@@ -18,9 +18,10 @@ output_path = "bottle_detection_1.5x.mp4"
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
 out = cv2.VideoWriter(output_path, fourcc, fps * 1.5, (width, height))
 
-# Make the window full screen
-cv2.namedWindow("Bottle Detection", cv2.WND_PROP_FULLSCREEN)
-cv2.setWindowProperty("Bottle Detection", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+# Set normal window with half screen size
+cv2.namedWindow("Bottle Detection", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Bottle Detection", width // 2, height // 2)
+cv2.moveWindow("Bottle Detection", 100, 100)  # Optional: position on screen
 
 # Process video
 frame_skip = 1  # You can increase to 2 for 2x speed
@@ -47,4 +48,3 @@ while cap.isOpened():
 cap.release()
 out.release()
 cv2.destroyAllWindows()
-
